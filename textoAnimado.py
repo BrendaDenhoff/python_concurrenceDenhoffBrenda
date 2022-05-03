@@ -1,7 +1,10 @@
 #Importa módulos para Interfaz Gráfica de usuario (tkinter)
+from concurrent.futures import process
 import tkinter as tk
 from tkinter import ttk
 import time
+import threading
+import multiprocessing
 
 #Crea la ventana principal
 main_window = tk.Tk()
@@ -32,10 +35,18 @@ def crearAnimacion(a, b, char):
         main_window.update()
 
 #Ejecuta tres animaciones
-crearAnimacion(10,10, 'X')
-crearAnimacion(10,30, 'Y')
-crearAnimacion(10,50, 'Z')
+# crearAnimacion(10,10, 'X')
+# crearAnimacion(10,10, 'Y')
+# crearAnimacion(10,50, 'Z')
 
+#Punto 4
+t1 = threading.Thread(target=crearAnimacion, args=(10,10, 'X'))
+t2 = threading.Thread(target=crearAnimacion, args=(10,30, 'Y'))
+t3 = threading.Thread(target=crearAnimacion, args=(10,50, 'Z'))
+
+t1.start()
+t2.start()
+t3.start()
 
 # Mantener las siguientes líneas siempre al final del script y en el mismo orden.
 #Coloca la opcion "Salir"
